@@ -1,0 +1,387 @@
+html {
+    margin: 0;
+    box-sizing: border-box;
+}
+main {
+    display: flex;
+    overflow-x: hidden;
+    position: relative;
+    justify-content: center;
+}
+
+body {
+    margin: 0;
+    /* border: 10px solid white;
+    border-radius: 2%; */
+}
+
+header {
+    position: relative;
+}
+
+@import "compass";
+@import "breakpoint";
+
+/* //Center Content */
+.container {
+    max-width: 100%;
+    /* margin: 0 auto; */
+}
+/* //Todo clean up some crappy code */
+.cards {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 15px;
+    /* padding: 1.5%; */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+.component {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: #cfc7d2;
+    /* position: fixed; */
+    margin-left: 20%;
+    margin-right: 20%;
+
+    height: 90%;
+    width: 70%;
+    z-index: 1;
+    transition: all 0.3s;
+    box-shadow: -10px 13px 10px -7px rgba(0, 0, 0, 0.5);
+}
+
+.component::-webkit-scrollbar {
+    display: none;
+}
+
+.imageinfo {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: row;
+    max-height: 40%;
+    position: relative;
+}
+
+.uploader {
+    align-self: baseline;
+    bottom: 0;
+    position: absolute;
+}
+.card-description {
+    position: absolute;
+}
+.oComments {
+    margin-left: 10%;
+    background-color: rgb(201, 109, 171);
+    height: auto;
+    overflow: scroll;
+    max-height: 100%;
+    min-height: 0;
+    max-width: 29%;
+    width: 29%;
+    margin-right: 5px;
+    position: absolute;
+    left: 60%;
+    border-radius: 2px;
+    box-shadow: -30px 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    /* justify-content: flex-end; */
+}
+.oComments::-webkit-scrollbar {
+    display: none;
+}
+
+.commentContent {
+    font-family: "Gelasio", serif;
+    font-weight: bold;
+}
+.oldcomments {
+    height: 70%;
+    width: 30%;
+}
+
+.modalbutton {
+    width: 30%;
+}
+.imginfo {
+    overflow: auto;
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* position: relative; */
+}
+.imginfotxt {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 29%;
+}
+
+.comment {
+    maxwidth: 33%;
+    padding: 3px;
+    margin: 20px;
+    background: #d4cbe5;
+    white-space: pre-wrap;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.5);
+}
+.newcomment {
+    line-height: 4em;
+    margin-left: 10px;
+    margin-top: 15px;
+    text-align: left;
+    /* border-color: purple; */
+    border-radius: 5px;
+    border: none;
+    background-color: #cfc7d2;
+    border-bottom: 2px solid purple;
+    /* align-self: baseline; */
+}
+
+.newcommentername {
+    line-height: 4em;
+    margin-left: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: none;
+    background-color: #cfc7d2;
+    border-bottom: 2px solid purple;
+}
+.commenter {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.cardmodal {
+    margin-left: 10px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.cardmodal img {
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.5);
+    max-height: 100%;
+}
+.card {
+    box-shadow: -10px 13px 10px -7px rgba(0, 0, 0, 0.5);
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+    width: 29%;
+    border-radius: 7px;
+    padding: 2px;
+    /* padding-right: 20px;
+    padding-left: 20px; */
+
+    position: relative;
+    /* margin-bottom: 20px; */
+    /* padding-bottom: 30px; */
+    background: #e0e3d9;
+    /* //the whole content of the card becomes linked, so this will give the text a "norma;" appearance */
+    text-decoration: none;
+    /* @include box-shadow(rgba(black, 0.19) 0 0 8px 0);
+    @include border-radius(4px);
+    @include breakpoint(700px, $no-query: true) {
+        //switch to 2 columns
+        max-width: 150pxf;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        &:nth-child(even) {
+            margin-right: 0;
+        }
+    }
+    @include breakpoint(980px, $no-query: true) {
+        //switch to 3 columns
+        &:nth-child(even) {
+            margin-right: 20px;
+        }
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    /* } */
+
+    span {
+        display: block;
+    }
+    .card-summary {
+        padding: 5% 5% 3% 5%;
+    }
+    .card-title {
+        background: rgba(157, 187, 63, 0.85);
+        padding: 3.5% 0 2.5% 0;
+        color: white;
+        font-family: "Roboto Condensed", sans-serif;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        h3 {
+            font-size: 1.2em;
+            line-height: 1.2;
+            padding: 0 3.5%;
+            margin: 0;
+        }
+    }
+    .card-meta {
+        max-height: 0;
+        overflow: hidden;
+        color: #666;
+        font-size: 0.78em;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 5%;
+        padding: 0 5%;
+        @include transition-property(max-height);
+        @include transition-duration(0.4s);
+        @include transition-timing-function(ease-in-out);
+    }
+    &:hover,
+    &:focus {
+        background: white;
+        @include box-shadow(rgba(black, 0.45) 0px 0px 20px 0px);
+        .card-title {
+            background: rgba(157, 187, 63, 0.95);
+        }
+        .card-meta {
+            max-height: 1em;
+        }
+    }
+}
+
+.card img {
+    width: 100%; // stop images from breaking out of their bounding boxes.
+    border-radius: 100px;
+}
+
+//General styles for page to make it prettier ;P
+body {
+    background: #f0f0f0;
+    font-size: 17px;
+    line-height: 1.4;
+    font-family: "Jaldi", sans-serif;
+}
+
+* {
+    @include transition-property(
+        background-color,
+        border-color,
+        box-shadow,
+        color,
+        opacity,
+        text-shadow,
+        transform
+    );
+    @include transition-duration(0.2s);
+    @include transition-timing-function(linear);
+}
+.closeMe {
+    align-self: flex-end;
+    cursor: pointer;
+    color: #93b1a7;
+    transition: color 3s linear;
+    -webkit-transition: color 3s linear;
+    -o-transition: color 3s linear;
+    -moz-transition: color 3s linear;
+    -ms-transition: color 3s linear;
+}
+@keyframes hoverme {
+    0% {
+        color: #93b1a7;
+    }
+    50% {
+        color: white;
+    }
+
+    100% {
+        color: black;
+    }
+}
+.closeMe:hover {
+    animation: hoverme 3s infinite;
+}
+
+.closeMe:hover {
+    transition: 0.5s ease-in-out;
+    color: #9bc4bc;
+}
+
+.title {
+    align-self: flex-start;
+    top: 0;
+}
+.modal-top {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.newcomments {
+    display: flex;
+    align-self: baseline;
+    transform: translateY(90%);
+    margin-top: 10%;
+}
+
+button {
+    width: 170px;
+    height: 40px;
+    line-height: 1;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 3px solid #8c82fc;
+    background: #fff;
+    color: #8c82fc;
+    border-radius: 40px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.35s;
+}
+
+button:hover {
+    background: #8c82fc;
+    color: #fff;
+}
+
+button span {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.35s;
+}
+
+.loadmore {
+    position: absolute;
+    align-self: center;
+    margin-left: 45%;
+}
+.deleteimage {
+    align-self: flex-end;
+    flexmargin-right: 10px;
+}
+
+.deleteimage img {
+    max-height: 40px;
+}
+
+.recipe {
+    /* position: absolute; */
+    /* float: left; */
+    display: inline-block;
+    margin: 0 auto;
+    /* box-sizing: border-box; */
+    width: 25%;
+}
+
+.recipe__wrapper {
+    /* display: inline-block; */
+
+    width: 100%;
+    position: relative;
+    text-align: center;
+}

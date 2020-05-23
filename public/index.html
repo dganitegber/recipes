@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- <> -->
+<html dir="rtl" lang="he">
+    <head>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Gelasio&display=swap"
+            rel="stylesheet"
+        />
+        <title>My Imageboard</title>
+        <header></header>
+    </head>
+    <body>
+        <div class=" recipe__wrapper">
+            <div class="recipe recipe__new">
+                מתכון חדש
+            </div>
+            <div class="recipe recipe__latest">
+                מתכונים אחרונים
+            </div>
+            <div class="recipe recipe__search">
+                חיפוש
+            </div>
+        </div>
+
+        <div id="main">
+            <new-recipe></new-recipe>
+
+            <first-component
+                v-if="selectedImage"
+                post-title="My amazing article"
+                :id="selectedImage"
+                @close="closeMe"
+                @renderagain="refresh"
+                @sendcomment="sendComment"
+            >
+            </first-component>
+            <header>
+                <h1>{{heading}}</h1>
+            </header>
+
+            <!-- <first-component>
+        </first-component>
+
+        <!-- <first-component>
+        </first-component>
+
+        <second-component>
+        </second-component> -->
+
+            <input
+                v-model="title"
+                type="text"
+                name="title"
+                placeholder="title"
+            />
+            <input
+                v-model="description"
+                type="text"
+                name="description"
+                placeholder="description"
+            />
+            <input
+                v-model="username"
+                type="text"
+                name="username"
+                placeholder="username"
+            />
+            <input
+                @change="handleChange"
+                type="file"
+                name="file"
+                accept="image/*"
+            />
+            <span v-if="!files || !files.length">No files selected</span>
+            <span v-else>
+                <!-- <label for='' v-for="file in files" :key="files.name">{{file.name}}</div> -->
+            </span>
+
+            <button @click="handleClick">submit</button>
+
+            <h2 >{{latest}}</h2>
+            <div class="cards" v-if="images">
+                <div class="card"  v-for="i in images">
+                    <a :href="'#'+i.id">
+                        <img :src="i.url" />
+                        <p class="card-title">{{i.title}}</p>
+                    </a>
+                </div>
+            </div>
+            <div class="loadmore">
+                <button @click="loadMore">Load more</button>
+            </div>
+
+            <!-- <first-component>
+        </first-component> -->
+        </div>
+        <script type="text/x-template" id="new-recipe">
+
+                  <div class="new-recipe__form">
+                        <input v-model='title' type="text" placeholder="כותרת">
+                        <div class="ingredients">
+                            <label for="cars">מצרכים</label>
+                            <select name="ingredients" id="ingredients-list" @click="selectIngridient" >
+                                <option v-for="ingredient in ingredients" value=''>{{ingredient.ingredientname}}</option>
+                                <option value="new">חדש...</option>
+                            </select>
+
+                        </div>
+
+                          </div>
+        </script>
+
+        <script type="text/x-template" id="template">
+            <div class="component">
+                <div class='modal-top'>
+                    <h1 class='closeMe' @click="close">X</h1>
+                    <h1 class='title'>{{clickedImage.title}}</h1>
+                </div>
+
+                <div class="imageinfo" >
+                        <div class="cardmodal" >
+                            <img :src="clickedImage.url">
+                            <div class='imginfotxt'>
+                                <h2 class="card-description">{{clickedImage.description}}</h2>
+                                <h4 class='uploader'> Uploaded by {{clickedImage.username}}</h4>
+                            </div>
+                        </div>
+                        <div class="oComments" v-c="commentsforimage.length">
+                            <div class="comment" v-for="i in commentsforimage" @click='selectedImage = i.id'>
+                                <p class="commenter">Posted by {{i.commenter}} On {{i.created_at}}  </p>
+                                <p class='commentContent' font-fanily="bold">{{i.message}} </p>
+                            </div>
+                        </div>
+                    </div>
+                <div class='newcomments'>
+                    <input class='newcomment' style="width: 195px;" v-model='comment' type="text" name="comment" placeholder="share your thoughts"></input>
+                    <input class='newcommentername' style="width: 195px;"  v-model='commentername' type="text" name="commentername" placeholder="What is your name?"></input>
+                    <button @click='sendComment' class='modalbutton'> Click Me</button>
+                </div>
+                <div  class="deleteimage" >
+                    <img  @click='deleteimage' src='delete.png' title="Delete this image!">
+                </div>
+
+            </div>
+        </script>
+        <script src="/js/vue.js"></script>
+        <script src="/js/axios.min.js"></script>
+        <script src="/js/script.js"></script>
+    </body>
+</html>
