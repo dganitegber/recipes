@@ -51,6 +51,15 @@ app.get("/ingredient", (req, res) => {
         res.json(results.rows);
     });
 });
+
+app.get("/units", (req, res) => {
+    console.log("hey there UNITS");
+    dbr.getUnits().then(results => {
+        console.log(results.rows);
+        res.json(results.rows);
+    });
+});
+
 app.get("/candy", (req, res) => {
     db.getImages().then(function(results) {
         res.json(results.rows);

@@ -35,20 +35,20 @@
                 @sendcomment="sendComment"
             >
             </first-component>
-            <header>
+            <!-- <header>
                 <h1>{{heading}}</h1>
-            </header>
+            </header> -->
 
             <!-- <first-component>
         </first-component>
 
-        <!-- <first-component>
+    <first-component>
         </first-component>
 
         <second-component>
         </second-component> -->
 
-            <input
+            <!-- <input
                 v-model="title"
                 type="text"
                 name="title"
@@ -71,26 +71,26 @@
                 type="file"
                 name="file"
                 accept="image/*"
-            />
-            <span v-if="!files || !files.length">No files selected</span>
-            <span v-else>
+            /> -->
+            <!-- <span v-if="!files || !files.length">No files selected</span> -->
+            <!-- <span v-else>
                 <!-- <label for='' v-for="file in files" :key="files.name">{{file.name}}</div> -->
-            </span>
+            <!-- </span> -->
 
-            <button @click="handleClick">submit</button>
+            <!-- <button @click="handleClick">submit</button> -->
 
-            <h2 >{{latest}}</h2>
-            <div class="cards" v-if="images">
+            <!-- <h2 >{{latest}}</h2> -->
+            <!-- <div class="cards" v-if="images">
                 <div class="card"  v-for="i in images">
                     <a :href="'#'+i.id">
                         <img :src="i.url" />
                         <p class="card-title">{{i.title}}</p>
                     </a>
                 </div>
-            </div>
-            <div class="loadmore">
-                <button @click="loadMore">Load more</button>
-            </div>
+            </div> -->
+            <!-- <div class="loadmore"> -->
+                <!-- <button @click="loadMore">Load more</button>
+            </div> -->
 
             <!-- <first-component>
         </first-component> -->
@@ -105,6 +105,19 @@
                                 <option v-for="ingredient in ingredients" value=''>{{ingredient.ingredientname}}</option>
                                 <option value="new">חדש...</option>
                             </select>
+                            <input v-if="!newIngredient" class='ingredients__new--measure' style="width: 195px;" v-model='measure' type="text" name="ingredient_measure" placeholder="כמה"></input>
+                            <select v-if="!newIngredient" name="units" id="ingredients-units" @click="selectUnit" >
+                                <option v-for="unit in units" value=''>{{unit.unit}}</option>
+                            </select>
+                            <p v-if="!newIngredient">הוספה</p>
+                            <div class="ingredients ingredients__new" v-if="newIngredient">
+                                <input  class='ingredients__new--name' style="width: 195px;" v-model='name' type="text" name="ingredient_name" placeholder="מצרך"></input>
+                                <input class='ingredients__new--measure' style="width: 195px;" v-model='measure' type="text" name="ingredient_measure" placeholder="כמה"></input>
+                                <select name="units" id="ingredients-units" @click="selectUnit" >
+                                    <option v-for="unit in units" value=''>{{unit.unit}}</option>
+                                </select>
+                                <p>הוספה</p>
+                            </div>
 
                         </div>
 

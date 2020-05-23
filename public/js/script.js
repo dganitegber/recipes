@@ -6,6 +6,7 @@
             return {
                 selected: "",
                 ingredients: [{}],
+                units: [{}],
                 newIngredient: null
             };
         },
@@ -21,6 +22,11 @@
                     vueInstance.newIngredient = null;
                 }
                 console.log("this.new", this.newIngredient);
+            },
+            selectUnit: function(e) {
+                var vueInstance = this;
+                console.log("changed unit");
+                console.log(e.target.value, vueInstance);
             }
         },
         mounted: function() {
@@ -28,6 +34,10 @@
             axios.get("/ingredient").then(function(res) {
                 vueInstance.ingredients = res.data;
                 console.log("ingredientValue", res.data);
+            });
+            axios.get("/units").then(function(res) {
+                vueInstance.units = res.data;
+                console.log("units", res.data);
             });
         }
     }),
@@ -143,7 +153,8 @@
             comments: [],
             commentsforimage: [],
             lastId: null,
-            files: null
+            files: null,
+            new: null
         },
         created: function() {
             console.log("created");

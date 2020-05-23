@@ -12,3 +12,8 @@ exports.insertIngredient = function(ingredientname) {
 exports.getIngredients = function() {
     return db.query("SELECT * FROM ingredients");
 };
+exports.getUnits = function() {
+    return db.query("SELECT * FROM units");
+};
+
+//  create table units(number SERIAL PRIMARY KEY, unit VARCHAR NOT NULL);
